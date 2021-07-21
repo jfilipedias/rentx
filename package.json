@@ -1,0 +1,8 @@
+{
+  "name": "rentalx",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jfilipedias/rentalx.git",
+  "author": "Filipe Dias <filipediascontato@gmail.com>",
+  "license": "MIT"
+}
