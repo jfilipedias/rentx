@@ -7,9 +7,10 @@ class Category {
   created_at: Date;
 
   constructor() {
-    if (!this.id)
+    if (!this.id) {
       this.id = uuidv4();
+    }
   }
 }
 
-export { Category }
+export { Category };
