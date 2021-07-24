@@ -1,3 +1,4 @@
+# vs code configs
 .vscode
 
 # Logs
@@ -104,3 +105,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Temporary files
+tmp
