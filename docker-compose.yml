@@ -1,4 +1,16 @@
-services: 
+services:
+  database:
+    image: postgres
+    container_name: database
+    restart: always
+    ports:
+      - 5432:5432
+    environment: 
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=rentx
+      - POSTGRES_DB=rentx
+    volumes:
+      - pgdata:/data/postgres
   app: 
     build: .
     container_name: rentx
@@ -6,3 +18,7 @@ services:
       - 3333:3333
     volumes:
       - .:/usr/app
+
+volumes:
+  pgdata:
+    driver: local
