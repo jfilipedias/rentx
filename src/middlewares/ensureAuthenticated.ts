@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 
-import { AppError } from "../errors/AppError";
-import { UsersRepository } from "../modules/accounts/repositories/implementations/UsersRepository";
+import { AppError } from "@errors/AppError";
+import { UsersRepository } from "@modules/accounts/repositories/implementations/UsersRepository";
 
 interface IPayload {
   sub: string;
@@ -12,7 +12,7 @@ export async function ensureAuthenticated(
   request: Request,
   response: Response,
   next: NextFunction
-) {
+): Promise<void> {
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
