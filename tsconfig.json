@@ -5,8 +5,6 @@
     "baseUrl": "./src/",
     "paths": {
       "@config/*": [ "config/*" ],
-      "@errors/*": [ "errors/*" ],
-      "@middlewares/*": [ "middlewares/*" ],
       "@modules/*": [ "modules/*" ],
       "@shared/*": [ "shared/*" ],
       "@utils/*": [ "utils/*" ]
