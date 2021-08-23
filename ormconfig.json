@@ -6,7 +6,7 @@
   "password": "rentx",
   "database": "rentx",
   "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
-  "entities": ["./src/modules/*/entities/*.ts"],
+  "entities": ["./src/modules/**/entities/*.ts"],
   "cli": {
     "migrationsDir": "./src/shared/infra/typeorm/migrations"
   }
