@@ -10,6 +10,7 @@ import createConnection from "@shared/infra/typeorm";
 import swaggerFile from "../../../swagger.json";
 import { router } from "./routes";
 
+createConnection();
 const app = express();
 
 app.use(express.json());
