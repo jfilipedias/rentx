@@ -8,7 +8,6 @@ Uma API para aluguel de carros desenvolvida em Node.js com express
 
 ### Regras de Negócio
 - Não deve ser possível cadastrar um novo carro com uma placa já existente.
-- Não deve ser possível alterar a placa de um carro já cadastrado.
 - O carro deve ser cadastrado com disponibilidade ativa por padrão.
 - Apenas um usuário administrador pode resalizar um cadastro.
 

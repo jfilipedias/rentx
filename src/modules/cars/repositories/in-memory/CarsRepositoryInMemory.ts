@@ -1,6 +1,5 @@
 import { ICreateCarDTO } from "@modules/cars/dtos/ICreateCarDTO";
 import { Car } from "@modules/cars/infra/typeorm/entities/Car";
-import { Category } from "@modules/cars/infra/typeorm/entities/Category";
 
 import { ICarsRepository } from "../ICarsRepository";
 
@@ -31,6 +30,21 @@ class CarsRepositoryInMemory implements ICarsRepository {
     this.cars.push(car);
 
     return car;
+  }
+
+  async findAvailable(
+    brand?: string,
+    category_id?: string,
+    name?: string
+  ): Promise<Car[]> {
+    let cars = this.cars.filter((car) => car.available);
+
+    if (brand) cars = cars.filter((car) => car.brand === brand);
+    if (name) cars = cars.filter((car) => car.name === name);
+    if (category_id)
+      cars = cars.filter((car) => car.category_id === category_id);
+
+    return cars;
   }
 
   async findByLicensePlate(license_plate: string): Promise<Car> {
