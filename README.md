@@ -40,7 +40,6 @@ Uma API para aluguel de carros desenvolvida em Node.js com express
 ## Cadastro de Imagem do Carro
 ### Requisitos Funcionais
 - Deve ser possível cadastrar a imagem do carro.
-- Deve ser possível listar todos os carros.
 
 ### Requisitos não Funcionais
 - Ultilizar o multer para upload de arquivo.
