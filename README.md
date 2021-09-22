@@ -56,3 +56,4 @@ Uma API para aluguel de carros desenvolvida em Node.js com express
 - O aluguel deve ter duração mínima de 24 horas.
 - Não deve ser possível cadastrar um novo aluguel caso já um aluguel aberto para o mesmo usuário.
 - Não deve ser possível cadastrar um novo aluguel caso já um aluguel aberto para o mesmo carro.
+- O usuário deve estar logado na aplicação
