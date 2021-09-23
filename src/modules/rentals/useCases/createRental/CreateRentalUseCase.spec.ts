@@ -1,7 +1,5 @@
-import dayjs from "dayjs";
-
 import { RentalsRepositoryInMemory } from "@modules/rentals/repositories/in-memory/RentalsRepositoryInMemory";
-import { DayjsDateProvider } from "@shared/container/DateProvider/implementations/DayjsDateProvider";
+import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
 import { AppError } from "@shared/errors/AppError";
 
 import { CreateRentalUseCase } from "./CreateRentalUseCase";
@@ -16,8 +14,8 @@ describe("Create rental", () => {
     rentalsRepositoryInMemory = new RentalsRepositoryInMemory();
     dayjsDateProvider = new DayjsDateProvider();
     createRentalUseCase = new CreateRentalUseCase(
-      dayjsDateProvider,
-      rentalsRepositoryInMemory
+      rentalsRepositoryInMemory,
+      dayjsDateProvider
     );
     dayPlus24Hours = dayjsDateProvider.datePlusHour(
       dayjsDateProvider.dateNow(),
@@ -25,7 +23,7 @@ describe("Create rental", () => {
     );
   });
 
-  it("Should be able to create a new rental", async () => {
+  it("Should be able to create a new rental.", async () => {
     const rental = await createRentalUseCase.execute({
       user_id: "12345",
       car_id: "121212",
@@ -36,7 +34,7 @@ describe("Create rental", () => {
     expect(rental).toHaveProperty("start_date");
   });
 
-  it("Should not able to create a new rental if already have an open rental to the same user", async () => {
+  it("Should not able to create a new rental if already have an open rental to the same user.", async () => {
     expect(async () => {
       await createRentalUseCase.execute({
         user_id: "12345",
@@ -52,7 +50,7 @@ describe("Create rental", () => {
     }).rejects.toBeInstanceOf(AppError);
   });
 
-  it("Should not able to create a new rental if already have an open rental to the same car", async () => {
+  it("Should not able to create a new rental if already have an open rental to the same car.", async () => {
     expect(async () => {
       await createRentalUseCase.execute({
         user_id: "12345",
@@ -68,12 +66,12 @@ describe("Create rental", () => {
     }).rejects.toBeInstanceOf(AppError);
   });
 
-  it("Should not able to create a new rental if the diff of expected_return_date and start_date are less than 24 hours", async () => {
+  it("Should not able to create a new rental if the diff of expected_return_date and start_date are less than 24 hours.", async () => {
     expect(async () => {
       await createRentalUseCase.execute({
         user_id: "12345",
         car_id: "121212",
-        expected_return_date: dayjs().toDate(),
+        expected_return_date: dayjsDateProvider.dateNow(),
       });
     }).rejects.toBeInstanceOf(AppError);
   });
