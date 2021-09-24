@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.1.0",
   "info": {
     "title": "Rentx Documentation",
     "description": "This is an API Rent",
@@ -8,23 +8,47 @@
       "email": "filipediascontato@gmail.com"
     }
   },
+  "tags": [
+    {
+      "name": "Car",
+      "description": "Gather endpoints related to car"
+    },
+    {
+      "name": "Category",
+      "description": "Gather endpoints related to car categories"
+    },
+    {
+      "name": "Rental",
+      "description": "Gather endpoints related to car rental"
+    },
+    {
+      "name": "Specification",
+      "description": "Gather endpoints related to car specifications"
+    },
+    {
+      "name": "User",
+      "description": "Gather endpoints related to users"
+    }
+  ],
   "paths": {
     "/categories": {
       "post": {
-        "tags": ["Category"],
+        "tags": [
+          "Category"
+        ],
         "summary": "Create a category.",
         "description": "Create a new category.",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type"  : "object",
+                "type": "object",
                 "properties": {
                   "name": {
-                    "type": "string" 
+                    "type": "string"
                   },
                   "description": {
-                    "type": "string" 
+                    "type": "string"
                   }
                 },
                 "example": {
@@ -45,7 +69,9 @@
         }
       },
       "get": {
-        "tags": ["Category"],
+        "tags": [
+          "Category"
+        ],
         "summary": "List all categories.",
         "description": "List all categories in the database.",
         "responses": {
@@ -61,7 +87,7 @@
                       "id": {
                         "type": "string"
                       },
-                      "name": { 
+                      "name": {
                         "type": "string"
                       },
                       "description": {
@@ -81,7 +107,9 @@
     },
     "/catregories/import": {
       "post": {
-        "tags": ["Category"],
+        "tags": [
+          "Category"
+        ],
         "summary": "Upload a new categories",
         "description": "Upload a new category from a csv file.",
         "requestBody": {
@@ -108,14 +136,16 @@
     },
     "/specifications": {
       "post": {
-        "tags": ["Specifications"],
+        "tags": [
+          "Specification"
+        ],
         "summary": "Create a specification",
         "description": "Create a new specification",
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { 
-                "$ref": "#/definitions/Specification"
+              "schema": {
+                "$ref": "#/definitions/specification"
               }
             }
           }
@@ -132,14 +162,16 @@
     }
   },
   "definitions": {
-    "Specification": {
+    "specification": {
       "type": "object",
       "properties": {
         "name": {
-          "type": "string"
+          "type": "string",
+          "exemple": "Multipoint Injection"
         },
         "description": {
-          "type": "string"
+          "type": "string",
+          "exemple": "The MPFI is a system or method of injecting fuel into internal combustion engine through multi ports situated on intake valve of each cylinder."
         }
       }
     }
