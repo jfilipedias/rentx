@@ -1,5 +1,5 @@
 {
-  "openapi": "3.1.0",
+  "openapi": "3.0.0",
   "info": {
     "title": "Rentx Documentation",
     "description": "This is an API Rent",
@@ -32,42 +32,6 @@
   ],
   "paths": {
     "/categories": {
-      "post": {
-        "tags": [
-          "Category"
-        ],
-        "summary": "Create a category.",
-        "description": "Create a new category.",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "name": "Category name example",
-                  "description": "A small description of the category"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created."
-          },
-          "500": {
-            "description": "Category already exists."
-          }
-        }
-      },
       "get": {
         "tags": [
           "Category"
@@ -80,27 +44,34 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "created_at": {
-                        "type": "string"
-                      }
-                    }
-                  }
+                  "$ref": "#/components/schemas/categoriesResponse"
                 }
               }
             }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Create a category.",
+        "description": "Create a new category.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/categoriesBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created."
+          },
+          "400": {
+            "description": "Category already exists."
           }
         }
       }
@@ -116,18 +87,17 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "type": "object",
                 "properties": {
                   "file": {
                     "type": "string",
-                    "formart": "binary"
+                    "format": "binary"
                   }
                 }
               }
             }
           }
         },
-        "response": {
+        "responses": {
           "201": {
             "description": "Created"
           }
@@ -145,7 +115,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/specification"
+                "$ref": "#/components/schemas/specificationBody"
               }
             }
           }
@@ -154,24 +124,111 @@
           "201": {
             "description": "Created"
           },
-          "500": {
+          "400": {
             "description": "Specification already exists."
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create an user.",
+        "description": "Create a new user.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "User already exists."
           }
         }
       }
     }
   },
-  "definitions": {
-    "specification": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "exemple": "Multipoint Injection"
-        },
-        "description": {
-          "type": "string",
-          "exemple": "The MPFI is a system or method of injecting fuel into internal combustion engine through multi ports situated on intake valve of each cylinder."
+  "components": {
+    "schemas": {
+      "category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          }
+        }
+      },
+      "categoriesBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Category name example"
+          },
+          "description": {
+            "type": "string",
+            "example": "A small description of the category"
+          }
+        }
+      },
+      "categoriesResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/category"
+        }
+      },
+      "specificationBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Multipoint Injection"
+          },
+          "description": {
+            "type": "string",
+            "example": "The MPFI is a system or method of injecting fuel into internal combustion engine through multi ports situated on intake valve of each cylinder."
+          }
+        }
+      },
+      "specificationResponse": {},
+      "userBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "John Wick"
+          },
+          "username": {
+            "type": "string",
+            "example": "babayaga"
+          },
+          "email": {
+            "type": "string",
+            "example": "babayaga@email.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "example": "loveMyDog!123"
+          }
         }
       }
     }
