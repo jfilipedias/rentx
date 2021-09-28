@@ -104,6 +104,32 @@
         }
       }
     },
+    "/session": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Authenticate the user.",
+        "description": "Authenticate the user to generate a JWT token.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/sessionBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "User already exists."
+          }
+        }
+      }
+    },
     "/specifications": {
       "post": {
         "tags": [
@@ -195,6 +221,20 @@
           "$ref": "#/components/schemas/category"
         }
       },
+      "sessionBody": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "babayaga@email.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "example": "loveMyDog!123"
+          }
+        }
+      },
       "specificationBody": {
         "type": "object",
         "properties": {
@@ -208,7 +248,6 @@
           }
         }
       },
-      "specificationResponse": {},
       "userBody": {
         "type": "object",
         "properties": {
@@ -228,6 +267,10 @@
             "type": "string",
             "format": "password",
             "example": "loveMyDog!123"
+          },
+          "driver_license": {
+            "type": "string",
+            "example": "1234567890"
           }
         }
       }
