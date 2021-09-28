@@ -181,6 +181,34 @@
           }
         }
       }
+    },
+    "/users/avatar": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Upload a new avatar",
+        "description": "Uploads a avatar to the authenticated user.",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No content."
+          }
+        }
+      }
     }
   },
   "components": {
