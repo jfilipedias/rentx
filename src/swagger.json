@@ -31,6 +31,24 @@
     }
   ],
   "paths": {
+    "/cars": {
+      "post": {
+        "tags": [
+          "Car"
+        ],
+        "summary": "Create a car",
+        "description": "Create a new car.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/carsBody"
+              }
+            }
+          }
+        }
+      }
+    },
     "/categories": {
       "get": {
         "tags": [
@@ -213,6 +231,42 @@
   },
   "components": {
     "schemas": {
+      "carsBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Gallardo"
+          },
+          "brand": {
+            "type": "string",
+            "example": "Lamborghini"
+          },
+          "description": {
+            "type": "string",
+            "example": "A sport car"
+          },
+          "daily_rate": {
+            "type": "number",
+            "format": "double",
+            "example": 299.98
+          },
+          "license_plate": {
+            "type": "string",
+            "example": "BRA2E19"
+          },
+          "fine_amount": {
+            "type": "number",
+            "format": "double",
+            "example": 99.98
+          },
+          "category_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "f6e6b6f2-540d-418c-801f-7257ec95aebf"
+          }
+        }
+      },
       "category": {
         "type": "object",
         "properties": {
