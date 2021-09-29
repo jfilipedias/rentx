@@ -61,6 +61,27 @@
         }
       }
     },
+    "/cars/available": {
+      "get": {
+        "tags": [
+          "Car"
+        ],
+        "summary": "List all cars available.",
+        "description": "List all cars available in the database.",
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cars"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/cars/specifications/{id}": {
       "post": {
         "tags": [
