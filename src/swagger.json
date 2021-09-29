@@ -82,6 +82,50 @@
         }
       }
     },
+    "/cars/images/{id}": {
+      "post": {
+        "tags": [
+          "Car"
+        ],
+        "summary": "Upload a new car image.",
+        "description": "Upload a new car image.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Car id.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "bf3a5983-de4b-414c-8084-5ea204168204"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created."
+          },
+          "401": {
+            "description": "Unauthorized. The user must be an admin"
+          }
+        }
+      }
+    },
     "/cars/specifications/{id}": {
       "post": {
         "tags": [
