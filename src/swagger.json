@@ -46,6 +46,64 @@
               }
             }
           }
+        },
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cars"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cars/specifications/{id}": {
+      "post": {
+        "tags": [
+          "Car"
+        ],
+        "summary": "Create a car spcification.",
+        "description": "Create a car specification in the database making the relationship between one Car and one or more Specifications.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Car id.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "bf3a5983-de4b-414c-8084-5ea204168204"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/carsSpecificationsBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/carsSpecificationsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Car does not exists."
+          }
         }
       }
     },
@@ -231,16 +289,26 @@
   },
   "components": {
     "schemas": {
-      "carsBody": {
+      "cars": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "bf3a5983-de4b-414c-8084-5ea204168204"
+          },
+          "available": {
+            "type": "boolean",
+            "example": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-09-28T20:57:08.007Z"
+          },
           "name": {
             "type": "string",
             "example": "Gallardo"
-          },
-          "brand": {
-            "type": "string",
-            "example": "Lamborghini"
           },
           "description": {
             "type": "string",
@@ -260,10 +328,119 @@
             "format": "double",
             "example": 99.98
           },
+          "brand": {
+            "type": "string",
+            "example": "Lamborghini"
+          },
           "category_id": {
             "type": "string",
             "format": "uuid",
-            "example": "f6e6b6f2-540d-418c-801f-7257ec95aebf"
+            "example": "207afc30-fbd3-4e6a-a2b9-f0c1fa508e10"
+          }
+        }
+      },
+      "carsBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Gallardo"
+          },
+          "description": {
+            "type": "string",
+            "example": "A sport car"
+          },
+          "daily_rate": {
+            "type": "number",
+            "format": "double",
+            "example": 299.98
+          },
+          "license_plate": {
+            "type": "string",
+            "example": "BRA2E19"
+          },
+          "fine_amount": {
+            "type": "number",
+            "format": "double",
+            "example": 99.98
+          },
+          "brand": {
+            "type": "string",
+            "example": "Lamborghini"
+          },
+          "category_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "207afc30-fbd3-4e6a-a2b9-f0c1fa508e10"
+          }
+        }
+      },
+      "carsSpecificationsBody": {
+        "type": "object",
+        "properties": {
+          "specifications_id": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "example": "293934b3-bccb-47e1-9de0-3b3108403df7"
+            }
+          }
+        }
+      },
+      "carsSpecificationsResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "bf3a5983-de4b-414c-8084-5ea204168204"
+          },
+          "available": {
+            "type": "boolean",
+            "example": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-09-28T20:57:08.007Z"
+          },
+          "name": {
+            "type": "string",
+            "example": "Gallardo"
+          },
+          "description": {
+            "type": "string",
+            "example": "A sport car"
+          },
+          "daily_rate": {
+            "type": "number",
+            "format": "double",
+            "example": 299.98
+          },
+          "license_plate": {
+            "type": "string",
+            "example": "BRA2E19"
+          },
+          "fine_amount": {
+            "type": "number",
+            "format": "double",
+            "example": 99.98
+          },
+          "brand": {
+            "type": "string",
+            "example": "Lamborghini"
+          },
+          "category_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "207afc30-fbd3-4e6a-a2b9-f0c1fa508e10"
+          },
+          "specifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/specification"
+            }
           }
         }
       },
@@ -314,6 +491,29 @@
             "type": "string",
             "format": "password",
             "example": "loveMyDog!123"
+          }
+        }
+      },
+      "specification": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "293934b3-bccb-47e1-9de0-3b3108403df7"
+          },
+          "name": {
+            "type": "string",
+            "example": "4-door car"
+          },
+          "description": {
+            "type": "string",
+            "example": "4-door car"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-09-24T20:57:48.939Z"
           }
         }
       },
