@@ -36,8 +36,8 @@
         "tags": [
           "Car"
         ],
-        "summary": "Create a car",
-        "description": "Create a new car.",
+        "summary": "Create a car.",
+        "description": "Create a new car in the database.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -74,7 +74,7 @@
           "Category"
         ],
         "summary": "Create a category.",
-        "description": "Create a new category.",
+        "description": "Create a new categoryin the database.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -99,8 +99,8 @@
         "tags": [
           "Category"
         ],
-        "summary": "Upload a new categories",
-        "description": "Upload a new category from a csv file.",
+        "summary": "Upload set of categories.",
+        "description": "Create a set of categories in the database from a csv file.",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -127,8 +127,8 @@
         "tags": [
           "User"
         ],
-        "summary": "Authenticate the user.",
-        "description": "Authenticate the user to generate a JWT token.",
+        "summary": "Authenticate a user.",
+        "description": "Authenticate a user to generate a JWT token.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -153,8 +153,8 @@
         "tags": [
           "Specification"
         ],
-        "summary": "Create a specification",
-        "description": "Create a new specification",
+        "summary": "Create a specification.",
+        "description": "Create a new specification in the database.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -180,7 +180,7 @@
           "User"
         ],
         "summary": "Create an user.",
-        "description": "Create a new user.",
+        "description": "Create a new user in the database.",
         "requestBody": {
           "content": {
             "application/json": {
