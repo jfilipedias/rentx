@@ -57,6 +57,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized. The user must be an admin."
           }
         }
       }
@@ -121,7 +124,7 @@
             "description": "Created."
           },
           "401": {
-            "description": "Unauthorized. The user must be an admin"
+            "description": "Unauthorized. The user must be an admin."
           }
         }
       }
@@ -168,6 +171,9 @@
           },
           "400": {
             "description": "Car does not exists."
+          },
+          "401": {
+            "description": "Unauthorized. The user must be an admin."
           }
         }
       }
@@ -213,6 +219,9 @@
           },
           "400": {
             "description": "Category already exists."
+          },
+          "401": {
+            "description": "Unauthorized. The user must be an admin."
           }
         }
       }
@@ -241,6 +250,9 @@
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized. The user must be an admin."
           }
         }
       }
@@ -293,6 +305,9 @@
           },
           "400": {
             "description": "Specification already exists."
+          },
+          "401": {
+            "description": "Unauthorized. The user must be an admin."
           }
         }
       }
@@ -347,6 +362,9 @@
         "responses": {
           "204": {
             "description": "No content."
+          },
+          "401": {
+            "description": "Unauthorized. The user must be authenticated."
           }
         }
       }
