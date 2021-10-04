@@ -257,6 +257,39 @@
         }
       }
     },
+    "/rentals": {
+      "post": {
+        "tags": [
+          "Rental"
+        ],
+        "summary": "Create a rent.",
+        "description": "Create a rent in the database.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/rentalBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rentalResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        }
+      }
+    },
     "/session": {
       "post": {
         "tags": [
@@ -561,6 +594,56 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/category"
+        }
+      },
+      "rentalBody": {
+        "type": "object",
+        "properties": {
+          "car_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "bf3a5983-de4b-414c-8084-5ea204168204"
+          },
+          "expected_return_date": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-12-01T01:04:28.047Z"
+          }
+        }
+      },
+      "rentalResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "c35babe6-edbb-4f26-8686-da7228aaeb3b"
+          },
+          "car_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "bf3a5983-de4b-414c-8084-5ea204168204"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "20ee83c0-094c-446c-a1c7-4174509e2353"
+          },
+          "expected_return_date": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-12-01T01:04:28.047Z"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-09-28T20:57:08.007Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-09-28T20:57:08.007Z"
+          }
         }
       },
       "sessionBody": {
