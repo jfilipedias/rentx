@@ -18,7 +18,7 @@ class CreateRentalUseCase {
     private rentalsRepository: IRentalsRepository,
     @inject("DayjsDateProvider")
     private dateProvider: IDateProvider
-  ) {}
+  ) { }
 
   async execute({
     car_id,

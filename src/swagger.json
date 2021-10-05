@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.0",
   "info": {
     "title": "Rentx Documentation",
     "description": "This is an API Rent",
@@ -8,28 +8,112 @@
       "email": "filipediascontato@gmail.com"
     }
   },
+  "tags": [
+    {
+      "name": "Car",
+      "description": "Gather endpoints related to car"
+    },
+    {
+      "name": "Category",
+      "description": "Gather endpoints related to car categories"
+    },
+    {
+      "name": "Rental",
+      "description": "Gather endpoints related to car rental"
+    },
+    {
+      "name": "Specification",
+      "description": "Gather endpoints related to car specifications"
+    },
+    {
+      "name": "User",
+      "description": "Gather endpoints related to users"
+    }
+  ],
   "paths": {
-    "/categories": {
+    "/cars": {
       "post": {
-        "tags": ["Category"],
-        "summary": "Create a category.",
-        "description": "Create a new category.",
+        "tags": [
+          "Car"
+        ],
+        "summary": "Create a car.",
+        "description": "Create a new car in the database.",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type"  : "object",
+                "$ref": "#/components/schemas/carsBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cars"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The user must be an admin."
+          }
+        }
+      }
+    },
+    "/cars/available": {
+      "get": {
+        "tags": [
+          "Car"
+        ],
+        "summary": "List all cars available.",
+        "description": "List all cars available in the database.",
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cars"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cars/images/{id}": {
+      "post": {
+        "tags": [
+          "Car"
+        ],
+        "summary": "Upload a new car image.",
+        "description": "Upload a new car image.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Car id.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "bf3a5983-de4b-414c-8084-5ea204168204"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
                 "properties": {
-                  "name": {
-                    "type": "string" 
-                  },
-                  "description": {
-                    "type": "string" 
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
                   }
-                },
-                "example": {
-                  "name": "Category name example",
-                  "description": "A small description of the category"
                 }
               }
             }
@@ -39,13 +123,66 @@
           "201": {
             "description": "Created."
           },
-          "500": {
-            "description": "Category already exists."
+          "401": {
+            "description": "Unauthorized. The user must be an admin."
           }
         }
-      },
+      }
+    },
+    "/cars/specifications/{id}": {
+      "post": {
+        "tags": [
+          "Car"
+        ],
+        "summary": "Create a car spcification.",
+        "description": "Create a car specification in the database making the relationship between one Car and one or more Specifications.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Car id.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "bf3a5983-de4b-414c-8084-5ea204168204"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/carsSpecificationsBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/carsSpecificationsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Car does not exists."
+          },
+          "401": {
+            "description": "Unauthorized. The user must be an admin."
+          }
+        }
+      }
+    },
+    "/categories": {
       "get": {
-        "tags": ["Category"],
+        "tags": [
+          "Category"
+        ],
         "summary": "List all categories.",
         "description": "List all categories in the database.",
         "responses": {
@@ -54,68 +191,58 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "name": { 
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "created_at": {
-                        "type": "string"
-                      }
-                    }
-                  }
+                  "$ref": "#/components/schemas/categoriesResponse"
                 }
               }
             }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Create a category.",
+        "description": "Create a new categoryin the database.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/categoriesBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created."
+          },
+          "400": {
+            "description": "Category already exists."
+          },
+          "401": {
+            "description": "Unauthorized. The user must be an admin."
           }
         }
       }
     },
     "/catregories/import": {
       "post": {
-        "tags": ["Category"],
-        "summary": "Upload a new categories",
-        "description": "Upload a new category from a csv file.",
+        "tags": [
+          "Category"
+        ],
+        "summary": "Upload set of categories.",
+        "description": "Create a set of categories in the database from a csv file.",
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
-                "type": "object",
                 "properties": {
                   "file": {
                     "type": "string",
-                    "formart": "binary"
+                    "format": "binary"
                   }
                 }
-              }
-            }
-          }
-        },
-        "response": {
-          "201": {
-            "description": "Created"
-          }
-        }
-      }
-    },
-    "/specifications": {
-      "post": {
-        "tags": ["Specifications"],
-        "summary": "Create a specification",
-        "description": "Create a new specification",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": { 
-                "$ref": "#/definitions/Specification"
               }
             }
           }
@@ -124,22 +251,475 @@
           "201": {
             "description": "Created"
           },
-          "500": {
+          "401": {
+            "description": "Unauthorized. The user must be an admin."
+          }
+        }
+      }
+    },
+    "/rentals": {
+      "post": {
+        "tags": [
+          "Rental"
+        ],
+        "summary": "Create a rent.",
+        "description": "Create a rent in the database.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/rentalBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rentalResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        }
+      }
+    },
+    "/session": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Authenticate a user.",
+        "description": "Authenticate a user to generate a JWT token.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/sessionBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "User already exists."
+          }
+        }
+      }
+    },
+    "/specifications": {
+      "post": {
+        "tags": [
+          "Specification"
+        ],
+        "summary": "Create a specification.",
+        "description": "Create a new specification in the database.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/specificationBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
             "description": "Specification already exists."
+          },
+          "401": {
+            "description": "Unauthorized. The user must be an admin."
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create an user.",
+        "description": "Create a new user in the database.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "User already exists."
+          }
+        }
+      }
+    },
+    "/users/avatar": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Upload a new avatar",
+        "description": "Uploads a avatar to the authenticated user.",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No content."
+          },
+          "401": {
+            "description": "Unauthorized. The user must be authenticated."
           }
         }
       }
     }
   },
-  "definitions": {
-    "Specification": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
+  "components": {
+    "schemas": {
+      "cars": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "bf3a5983-de4b-414c-8084-5ea204168204"
+          },
+          "available": {
+            "type": "boolean",
+            "example": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-09-28T20:57:08.007Z"
+          },
+          "name": {
+            "type": "string",
+            "example": "Gallardo"
+          },
+          "description": {
+            "type": "string",
+            "example": "A sport car"
+          },
+          "daily_rate": {
+            "type": "number",
+            "format": "double",
+            "example": 299.98
+          },
+          "license_plate": {
+            "type": "string",
+            "example": "BRA2E19"
+          },
+          "fine_amount": {
+            "type": "number",
+            "format": "double",
+            "example": 99.98
+          },
+          "brand": {
+            "type": "string",
+            "example": "Lamborghini"
+          },
+          "category_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "207afc30-fbd3-4e6a-a2b9-f0c1fa508e10"
+          }
+        }
+      },
+      "carsBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Gallardo"
+          },
+          "description": {
+            "type": "string",
+            "example": "A sport car"
+          },
+          "daily_rate": {
+            "type": "number",
+            "format": "double",
+            "example": 299.98
+          },
+          "license_plate": {
+            "type": "string",
+            "example": "BRA2E19"
+          },
+          "fine_amount": {
+            "type": "number",
+            "format": "double",
+            "example": 99.98
+          },
+          "brand": {
+            "type": "string",
+            "example": "Lamborghini"
+          },
+          "category_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "207afc30-fbd3-4e6a-a2b9-f0c1fa508e10"
+          }
+        }
+      },
+      "carsSpecificationsBody": {
+        "type": "object",
+        "properties": {
+          "specifications_id": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "example": "293934b3-bccb-47e1-9de0-3b3108403df7"
+            }
+          }
+        }
+      },
+      "carsSpecificationsResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "bf3a5983-de4b-414c-8084-5ea204168204"
+          },
+          "available": {
+            "type": "boolean",
+            "example": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-09-28T20:57:08.007Z"
+          },
+          "name": {
+            "type": "string",
+            "example": "Gallardo"
+          },
+          "description": {
+            "type": "string",
+            "example": "A sport car"
+          },
+          "daily_rate": {
+            "type": "number",
+            "format": "double",
+            "example": 299.98
+          },
+          "license_plate": {
+            "type": "string",
+            "example": "BRA2E19"
+          },
+          "fine_amount": {
+            "type": "number",
+            "format": "double",
+            "example": 99.98
+          },
+          "brand": {
+            "type": "string",
+            "example": "Lamborghini"
+          },
+          "category_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "207afc30-fbd3-4e6a-a2b9-f0c1fa508e10"
+          },
+          "specifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/specification"
+            }
+          }
+        }
+      },
+      "category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          }
+        }
+      },
+      "categoriesBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Category name example"
+          },
+          "description": {
+            "type": "string",
+            "example": "A small description of the category"
+          }
+        }
+      },
+      "categoriesResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/category"
+        }
+      },
+      "rentalBody": {
+        "type": "object",
+        "properties": {
+          "car_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "bf3a5983-de4b-414c-8084-5ea204168204"
+          },
+          "expected_return_date": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-12-01T01:04:28.047Z"
+          }
+        }
+      },
+      "rentalResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "c35babe6-edbb-4f26-8686-da7228aaeb3b"
+          },
+          "car_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "bf3a5983-de4b-414c-8084-5ea204168204"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "20ee83c0-094c-446c-a1c7-4174509e2353"
+          },
+          "expected_return_date": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-12-01T01:04:28.047Z"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-09-28T20:57:08.007Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-09-28T20:57:08.007Z"
+          }
+        }
+      },
+      "sessionBody": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "babayaga@email.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "example": "loveMyDog!123"
+          }
+        }
+      },
+      "specification": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "293934b3-bccb-47e1-9de0-3b3108403df7"
+          },
+          "name": {
+            "type": "string",
+            "example": "4-door car"
+          },
+          "description": {
+            "type": "string",
+            "example": "4-door car"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-09-24T20:57:48.939Z"
+          }
+        }
+      },
+      "specificationBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Multipoint Injection"
+          },
+          "description": {
+            "type": "string",
+            "example": "The MPFI is a system or method of injecting fuel into internal combustion engine through multi ports situated on intake valve of each cylinder."
+          }
+        }
+      },
+      "userBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "John Wick"
+          },
+          "username": {
+            "type": "string",
+            "example": "babayaga"
+          },
+          "email": {
+            "type": "string",
+            "example": "babayaga@email.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "example": "loveMyDog!123"
+          },
+          "driver_license": {
+            "type": "string",
+            "example": "1234567890"
+          }
         }
       }
     }
