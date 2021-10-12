@@ -87,3 +87,16 @@ PORT=3333
 - Não deve ser possível cadastrar um novo aluguel caso já um aluguel aberto para o mesmo usuário.
 - Não deve ser possível cadastrar um novo aluguel caso já um aluguel aberto para o mesmo carro.
 - O usuário deve estar logado na aplicação
+
+## Devolução de carro
+### Requisitos Funcionais
+- Deve ser possível realizar a devolução de um carro.
+
+### Regras de Negócio
+- Se o carro for devolvido com menos de 24 horas, deverá ser cobrado diária completa.
+- Ao realizar a devolução, o carro deverá ser liberado para outro aluguel.
+- Ao realizar a devolução, o usuário deverá ser liberado para para outro aluguel.
+- Ao realizar a devoluçao, deverá ser calculado o total do aluguel.
+- Caso o horário de devolução seja superior ao horário previsto de entrega, deverá ser cobrado
+multa proporcional aos dias de atraso.
+- Caso haja multa, deverá ser somado ao total do aluguel.
