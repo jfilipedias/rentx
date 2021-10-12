@@ -1,4 +1,3 @@
-import { User } from "@modules/accounts/infra/typeorm/entities/User";
 import { ICreateCarDTO } from "@modules/cars/dtos/ICreateCarDTO";
 import { Car } from "@modules/cars/infra/typeorm/entities/Car";
 
@@ -58,6 +57,11 @@ class CarsRepositoryInMemory implements ICarsRepository {
 
   async findByLicensePlate(license_plate: string): Promise<Car> {
     return this.cars.find((car) => car.license_plate === license_plate);
+  }
+
+  async updateAvailable(id: string, available: boolean): Promise<void> {
+    const index = this.cars.findIndex((car) => car.id === id);
+    this.cars[index].available = available;
   }
 }
 
