@@ -1,6 +1,36 @@
 # rentalx
 Uma API para aluguel de carros desenvolvida em Node.js com express
 
+## Preparação do ambiente
+
+### Preparação inicial do projeto
+```sh
+# Instala as dependências
+yarn
+
+# Cria os containers
+docker-compose up -d
+
+# Executa as migrations
+yarn typeorm migration:run
+
+# Executa seed no banco de dados
+yarn seed:admin
+```
+
+### Criação do banco para testes
+```sql
+-- Cria o banco para testes de integração
+CREATE DATABASE rentx_test
+```
+
+### Criação das variáveis de ambiente
+```env
+HOST=http://localhost
+NODE_ENV=test
+PORT=3333
+```
+
 ## Cadastro de carros
 ### Requisitos Funcionais
 - Deve ser possível cadastrar um novo carro.
