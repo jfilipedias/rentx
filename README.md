@@ -27,7 +27,7 @@ CREATE DATABASE rentx_test
 ### Criação das variáveis de ambiente
 ```env
 HOST=http://localhost
-NODE_ENV=test
+NODE_ENV=localhost
 PORT=3333
 ```
 
