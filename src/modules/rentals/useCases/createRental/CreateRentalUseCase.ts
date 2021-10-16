@@ -48,9 +48,9 @@ class CreateRentalUseCase {
       this.dateProvider.dateNow(),
       expected_return_date
     );
-    const compareHours = 24;
+    const minimumHours = 24;
 
-    if (compare < compareHours) {
+    if (compare < minimumHours) {
       throw new AppError("The rent must last at least 24 hours!");
     }
 
