@@ -20,7 +20,6 @@ class RentalsRepository implements IRentalsRepository {
     end_date,
     total,
   }: ICreateRentalDTO): Promise<Rental> {
-    console.log("Start to create the rental...");
     const rental = this.repository.create({
       car_id,
       user_id,
@@ -30,11 +29,8 @@ class RentalsRepository implements IRentalsRepository {
       total,
     });
 
-    console.log("Create the rental...");
-
     await this.repository.save(rental);
 
-    console.log("Save the rental...");
     return rental;
   }
 
