@@ -38,6 +38,9 @@
         ],
         "summary": "Create a car.",
         "description": "Create a new car in the database.",
+        "security": [
+          { "bearerAuth": [] }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -92,6 +95,9 @@
         ],
         "summary": "Upload a new car image.",
         "description": "Upload a new car image.",
+        "security": [
+          { "bearerAuth": [] }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -140,6 +146,9 @@
         ],
         "summary": "Create a car spcification.",
         "description": "Create a car specification in the database making the relationship between one Car and one or more Specifications.",
+        "security": [
+          { "bearerAuth": [] }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -208,6 +217,9 @@
         ],
         "summary": "Create a category.",
         "description": "Create a new categoryin the database.",
+        "security": [
+          { "bearerAuth": [] }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -237,6 +249,9 @@
         ],
         "summary": "Upload set of categories.",
         "description": "Create a set of categories in the database from a csv file.",
+        "security": [
+          { "bearerAuth": [] }
+        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -268,6 +283,9 @@
         ],
         "summary": "Create a rent.",
         "description": "Create a rent in the database.",
+        "security": [
+          { "bearerAuth": [] }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -327,6 +345,9 @@
         ],
         "summary": "Create a specification.",
         "description": "Create a new specification in the database.",
+        "security": [
+          { "bearerAuth": [] }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -382,6 +403,9 @@
         ],
         "summary": "Upload a new avatar",
         "description": "Uploads a avatar to the authenticated user.",
+        "security": [
+          { "bearerAuth": [] }
+        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -725,6 +749,13 @@
             "example": "1234567890"
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
