@@ -102,3 +102,13 @@ PORT=3333
 multa proporcional aos dias de atraso.
 - Caso haja multa, deverá ser somado ao total do aluguel.
 - O usuário deve estar logado na aplicação.
+
+## Recuperação de senha
+### Requisitos Funcionais
+- Deve ser possível recuperar a senha informando o email.
+- O usuário deve receber um email com o passo a passo para recuperar a senha.
+- O usuário deve conseguir inserir uma nova senha.
+
+### Requisitos não Funcionais
+- O usuário precisa informar uma nova senha.
+- O link enviado para recuperação deve expirar em 3 horas.
