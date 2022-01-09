@@ -26,9 +26,11 @@ CREATE DATABASE rentx_test
 
 ### Criação das variáveis de ambiente
 ```env
+BASE_URL=http://localhost:3333
 HOST=http://localhost
-NODE_ENV=localhost
 PORT=3333
+RESET_PASSWORD_ENDPOINT=/password/reset?token=
+NODE_ENV=localhost
 ```
 
 ## Cadastro de carros
