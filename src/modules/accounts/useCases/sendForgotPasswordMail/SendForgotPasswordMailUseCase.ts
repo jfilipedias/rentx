@@ -1,3 +1,4 @@
+import { resolve } from "path";
 import { inject, injectable } from "tsyringe";
 import { v4 as uuid } from "uuid";
 
@@ -39,10 +40,25 @@ class SendForgotPasswordMailUseCase {
       expires_date,
     });
 
+    const templatePath = resolve(
+      __dirname,
+      "..",
+      "..",
+      "views",
+      "emails",
+      "forgotPassword.hbs"
+    );
+
+    const variables = {
+      name: user.name,
+      link: `${process.env.BASE_URL}${process.env.RESET_PASSWORD_ENDPOINT}${token}`,
+    };
+
     await this.mailProvider.sendMail(
       email,
       "Password recovery.",
-      `The reset link is ${token}`
+      variables,
+      templatePath
     );
   }
 }
