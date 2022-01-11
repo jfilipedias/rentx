@@ -14,7 +14,7 @@ class SendForgotPasswordMailUseCase {
     @inject("UsersRepository")
     private usersRepository: IUsersRepository,
     @inject("UsersTokensRepository")
-    private usersTokensRepoisory: IUsersTokensRepository,
+    private usersTokensRepository: IUsersTokensRepository,
     @inject("DayjsDateProvider")
     private dateProvider: IDateProvider,
     @inject("EtherealMailProvider")
@@ -34,7 +34,7 @@ class SendForgotPasswordMailUseCase {
       3
     );
 
-    await this.usersTokensRepoisory.create({
+    await this.usersTokensRepository.create({
       user_id: user.id,
       refresh_token: token,
       expires_date,
