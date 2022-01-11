@@ -32,7 +32,7 @@ describe("Create category controller.", () => {
       .post("/sessions")
       .send({ email: "admin@foobar.com", password: "admin" });
 
-    const { token } = responseToken.body;
+    const { refreshToken } = responseToken.body;
 
     const response = await request(app)
       .post("/categories")
@@ -40,7 +40,7 @@ describe("Create category controller.", () => {
         name: "Category supertest",
         description: "Categories supertest",
       })
-      .set({ Authorization: `Bearer ${token}` });
+      .set({ Authorization: `Bearer ${refreshToken}` });
 
     expect(response.status).toBe(201);
   });
@@ -50,7 +50,7 @@ describe("Create category controller.", () => {
       .post("/sessions")
       .send({ email: "admin@foobar.com", password: "admin" });
 
-    const { token } = responseToken.body;
+    const { refreshToken } = responseToken.body;
 
     const response = await request(app)
       .post("/categories")
@@ -58,7 +58,7 @@ describe("Create category controller.", () => {
         name: "Category supertest",
         description: "Categories supertest",
       })
-      .set({ Authorization: `Bearer ${token}` });
+      .set({ Authorization: `Bearer ${refreshToken}` });
 
     expect(response.status).toBe(400);
   });
