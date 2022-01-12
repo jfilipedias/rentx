@@ -26,11 +26,14 @@ CREATE DATABASE rentx_test
 
 ### Criação das variáveis de ambiente
 ```env
+AWS_ACCESS_KEY_ID=YOURACCESSKEYID
+AWS_SECRET_ACCESS_KEY=YOURSECRETACCESSKEY
+AWS_BUCKET=your-bucket-name
 BASE_URL=http://localhost:3333
 HOST=http://localhost
+NODE_ENV=localhost
 PORT=3333
 RESET_PASSWORD_ENDPOINT=/password/reset?token=
-NODE_ENV=localhost
 ```
 
 ## Cadastro de carros
