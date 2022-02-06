@@ -1,30 +1,39 @@
-# rentalx
-Uma API para aluguel de carros desenvolvida em Node.js com express
+<h1 align="center">
+  <img alt="letmeask" src=".github/logo.svg" width="400px" />
+</h1>
 
-## Preparação do ambiente
+<p align="center">
+  <img alt="Developer" src="https://img.shields.io/badge/developer-jfilipedias-blue">
+  <img alt="GitHub" src="https://img.shields.io/github/license/jfilipedias/letmeask">
+</p>
+<br>
 
-### Preparação inicial do projeto
+Rentx is an API to rent cars build with Node and express.
+
+## Getting started
+
+### setup the project
 ```sh
-# Instala as dependências
-yarn
+# Install dependencies
+$ yarn
 
-# Cria os containers
-docker-compose up -d
+# Build containers
+$ docker-compose up -d
 
-# Executa as migrations
-yarn typeorm migration:run
+# Run database migrations
+$ yarn typeorm migration:run
 
-# Executa seed no banco de dados
-yarn seed:admin
+# Seed database
+$ yarn seed:admin
 ```
 
-### Criação do banco para testes
+### Setup the test database
 ```sql
--- Cria o banco para testes de integração
+-- On postgres container create the test database
 CREATE DATABASE rentx_test
 ```
 
-### Criação das variáveis de ambiente
+### Setup enviroment variables
 ```env
 AWS_ACCESS_KEY_ID=YOURACCESSKEYID
 AWS_SECRET_ACCESS_KEY=YOURSECRETACCESSKEY
@@ -34,6 +43,16 @@ HOST=http://localhost
 NODE_ENV=localhost
 PORT=3333
 RESET_PASSWORD_ENDPOINT=/password/reset?token=
+```
+
+### Run the API
+```sh
+$ yarn dev
+```
+
+### Run the test suit
+```sh
+$ yarn test
 ```
 
 ## Cadastro de carros
@@ -117,3 +136,7 @@ multa proporcional aos dias de atraso.
 ### Requisitos não Funcionais
 - O usuário precisa informar uma nova senha.
 - O link enviado para recuperação deve expirar em 3 horas.
+
+
+## License
+This project is licensed under the MIT. Consult the [LICENSE](LICENSE) for more information.
