@@ -1,10 +1,10 @@
 import { IStorageProvider } from "../IStorageProvider";
 
 class S3StorageProvider implements IStorageProvider {
-  save(file: string): Promise<string> {
+  save(file: string, folder: string): Promise<string> {
     throw new Error("Method not implemented.");
   }
-  delete(file: string): Promise<void> {
+  delete(file: string, folder: string): Promise<void> {
     throw new Error("Method not implemented.");
   }
 }

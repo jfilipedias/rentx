@@ -1,11 +1,9 @@
 import { IStorageProvider } from "../IStorageProvider";
 
 class LocalStorageProvider implements IStorageProvider {
-  save(file: string): Promise<string> {
-    throw new Error("Method not implemented.");
+  async save(file: string, folder: string): Promise<string> {
   }
-  delete(file: string): Promise<void> {
-    throw new Error("Method not implemented.");
+  async delete(file: string, folder: string): Promise<void> {
   }
 }
 
