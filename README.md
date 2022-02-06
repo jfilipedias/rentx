@@ -66,88 +66,84 @@ $ yarn dev
 $ yarn test
 ```
 
-## Cadastro de carros
-### Requisitos Funcionais
-- Deve ser possível cadastrar um novo carro.
-- Deve ser possível listar todas as categorias.
+## API Requirements
+### Car Registration
+#### Functional Requirements
+- It should be able to register a new car.
 
-### Regras de Negócio
-- Não deve ser possível cadastrar um novo carro com uma placa já existente.
-- O carro deve ser cadastrado com disponibilidade ativa por padrão.
-- Apenas um usuário administrador pode resalizar um cadastro.
+#### Business Rules
+- It should not be able to register a new car with an existing license plate.
+- The car must be registered as available by default.
+- Only an admin user should be able to register a car.
 
-## Listagem de carros
-### Requisitos Funcionais
-- Deve ser possível listar todos os carros disponíveis.
-- Deve ser possível listar todos os carros disponíveis pelo nome do carro.
-- Deve ser possível listar todos os carros disponíveis pela categoria.
-- Deve ser possível listar todos os carros disponíveis pela marca.
+### Car Listing
+### Functional Requirements
+- It should be able to list all available cars.
+- It should be able to list all available cars by car name.
+- It should be able to list all available cars by category.
+- It should be able to list all available cars by brand.
 
-### Regras de Negócio
-- O usuário não precisa estar logado no sistema.
+### Business Rules
+- The user does not need to be logged in.
 
-## Cadastro de Especificação de carros
-### Requisitos Funcionais
-- Deve ser possível cadastrar uma especificação para um carro.
+### Car Specificartion registration
+#### Functional Requirements
+- It should be able to register a new specification to a car.
 
-### Regra de Negócio
-- Não deve ser possível cadastrar uma especificação para um carro não cadastrado.
-- Não deve ser possível cadastrar uma especificação já existente para o mesmo carro.
-- Apenas um usuário administrador pode resalizar um cadastro.
+#### Business Rules
+- It should not be able to register a specification to a non registered car.
+- It should not be able to register a specification already existing to the same car.
+- Only an admin user can register a specification.
 
-## Listagem de Especificação de carros
-### Requisitos Funcionais
-- Deve ser possível listar todas as epecificações.
+### Car Specificartion Listing
+#### Functional Requirements
+- It should be able to list all specifications.
 
-### Regras de Negócio
-- O usuário não precisa estar logado no sistema.
+#### Business Rules
+- The user does not need to be logged in.
 
-## Cadastro de Imagem do Carro
-### Requisitos Funcionais
-- Deve ser possível cadastrar a imagem do carro.
+### Car Image Registration
+#### Functional Requirements
+- It should be able to register a car image.
 
-### Requisitos não Funcionais
-- Ultilizar o multer para upload de arquivo.
+#### Business Rules
+- The user car register more than one image to the same car.
+- Only an admin user can register a car image.
 
-### Regras de Negócio
-- O usuário deve poder cadastrar mais de uma imagem para o mesmo carro.
-- Apenas um usuário administrador pode resalizar um cadastro.
+## Car Rental
+#### Functional Requirements
+- It should be able to register a rental.
 
-## Aluguel de carro
-### Requisitos Funcionais
-- Deve ser possível cadastrar um aluguel.
+#### Business Rules
+- The rental must have a minimum duration of 24 hours.
+- It should not be able to register a new rental if already exists a open rental for the same user.
+- It should not be able to register a new rental if already exists a open rental for the same car.
+- The user must be looged in.
+- When make a rental, the car status must be changed to unavailable.
 
-### Regras de Negócio
-- O aluguel deve ter duração mínima de 24 horas.
-- Não deve ser possível cadastrar um novo aluguel caso já um aluguel aberto para o mesmo usuário.
-- Não deve ser possível cadastrar um novo aluguel caso já um aluguel aberto para o mesmo carro.
-- O usuário deve estar logado na aplicação.
-- Ao realizar um aluguel, o status do carro deverá ser alterado para indisponível.
+### Car Return
+#### Functional Requirements
+- It should be able to return a car.
 
-## Devolução de carro
-### Requisitos Funcionais
-- Deve ser possível realizar a devolução de um carro.
+#### Business Rules
+- If the car is returned less than 24 hours later, the full daily should be charged.
+- When making the return, the car must be released for another rental.
+- When making the return, the user must be released for another rental.
+- When making the return, the total rent must be calculated.
+- If the return time is longer than the expected return time, a fine proportional to the days of delay must be charged.
+- If there is a fine, it must be added to the total rent.
+- The user must be logged in.
 
-### Regras de Negócio
-- Se o carro for devolvido com menos de 24 horas, deverá ser cobrado diária completa.
-- Ao realizar a devolução, o carro deverá ser liberado para outro aluguel.
-- Ao realizar a devolução, o usuário deverá ser liberado para para outro aluguel.
-- Ao realizar a devoluçao, deverá ser calculado o total do aluguel.
-- Caso o horário de devolução seja superior ao horário previsto de entrega, deverá ser cobrado
-multa proporcional aos dias de atraso.
-- Caso haja multa, deverá ser somado ao total do aluguel.
-- O usuário deve estar logado na aplicação.
+## Password Recovery
+#### Functional Requirements
+- It should be able to recover the password by entering the email.
+- The user must receive an email with the step by step to recover the password.
+- The user should be able to enter a new password.
 
-## Recuperação de senha
-### Requisitos Funcionais
-- Deve ser possível recuperar a senha informando o email.
-- O usuário deve receber um email com o passo a passo para recuperar a senha.
-- O usuário deve conseguir inserir uma nova senha.
-
-### Requisitos não Funcionais
+#### Business Rules
+- The user need to enter the new password.
 - O usuário precisa informar uma nova senha.
-- O link enviado para recuperação deve expirar em 3 horas.
-
+- The link sent for recovery must expire in 3 hours.
 
 ## License
 This project is licensed under the MIT. Consult the [LICENSE](LICENSE) for more information.
