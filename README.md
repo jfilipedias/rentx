@@ -110,7 +110,7 @@ $ yarn test
 - The user car register more than one image to the same car.
 - Only an admin user can register a car image.
 
-## Car Rental
+### Car Rental
 #### Functional Requirements
 - It should be able to register a rental.
 
@@ -134,7 +134,7 @@ $ yarn test
 - If there is a fine, it must be added to the total rent.
 - The user must be logged in.
 
-## Password Recovery
+### Password Recovery
 #### Functional Requirements
 - It should be able to recover the password by entering the email.
 - The user must receive an email with the step by step to recover the password.
