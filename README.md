@@ -8,7 +8,18 @@
 </p>
 <br>
 
-Rentx is an API to rent cars build with Node and express.
+Rentx is an API for car rent built with [Node](https://nodejs.org/) and [Express](https://expressjs.com/).
+
+## Technologies
+- [Node](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Docker](https://www.docker.com/)
+- [Postgres](https://www.postgresql.org/)
+- [TypeORM](https://typeorm.io/)
+- [Jest](https://jestjs.io/)
+- [JWT](https://jwt.io/)
+- [AWS](https://aws.amazon.com/)
 
 ## Getting started
 
