@@ -50,9 +50,9 @@ AWS_ACCESS_KEY_ID=YOURACCESSKEYID
 AWS_SECRET_ACCESS_KEY=YOURSECRETACCESSKEY
 AWS_BUCKET=your-bucket-name
 AWS_BUCKET_REGION=your-bucket-region
+AWS_BUCKET_URL=https://your-bucket-url.s3.region.amazonaws.com/
 DISK_STORAGE=local
 NODE_ENV=localhost
-BASE_URL=http://localhost:3333
 HOST=http://localhost
 PORT=3333
 RESET_PASSWORD_ENDPOINT=/password/reset?token=
