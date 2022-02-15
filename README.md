@@ -46,12 +46,19 @@ CREATE DATABASE rentx_test
 
 ### Setup enviroment variables
 ```env
+# AWS
 AWS_ACCESS_KEY_ID=YOURACCESSKEYID
 AWS_SECRET_ACCESS_KEY=YOURSECRETACCESSKEY
 AWS_BUCKET=your-bucket-name
 AWS_BUCKET_REGION=your-bucket-region
 AWS_BUCKET_URL=https://your-bucket-url.s3.region.amazonaws.com/
-DISK_STORAGE=local
+AWS_REGION=your-region
+
+# Providers
+STORAGE_PROVIDER=local
+MAIL_PROVIDER=local
+
+# Host
 NODE_ENV=localhost
 HOST=http://localhost
 PORT=3333
