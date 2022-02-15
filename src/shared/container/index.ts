@@ -1,6 +1,8 @@
 import { container } from "tsyringe";
 
+import "@shared/container/providers/dateProvider";
 import "@shared/container/providers";
+import "@shared/container/providers/storageProvider";
 
 import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/UsersRepository";
 import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
