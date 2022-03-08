@@ -26,12 +26,9 @@ export default async function rateLimiter(
   next: NextFunction
 ): Promise<void> {
   try {
-    await redisClient.connect();
     await redisLimiter.consume(request.ip);
     return next();
   } catch (err) {
     throw new AppError("Too many requests", 429);
-  } finally {
-    await redisClient.disconnect();
   }
 }
